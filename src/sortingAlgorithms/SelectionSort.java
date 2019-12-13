@@ -3,7 +3,7 @@ package sortingAlgorithms;
 import java.util.Scanner;
 
 /**
- * Implements selection sorting algorithm The algorithm sorts the array by
+ * Implements selection sorting algorithm. The algorithm sorts the array by
  * repeatedly finding the minimum element from unsorted array and putting it at
  * the beginning.
  * 
