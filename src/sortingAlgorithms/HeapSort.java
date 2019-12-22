@@ -1,5 +1,11 @@
 package sortingAlgorithms;
 
+/*
+ * a. Call the buildMaxHeap() 
+ * b. Put the last element in the end and decrease the size of array
+ * c. Call heapify every time and decrease the size of array
+ * 
+ * */
 import java.util.Scanner;
 
 public class HeapSort {
@@ -17,7 +23,7 @@ public class HeapSort {
 			for (int k = 0; k < sizeOfArray; k++)
 				ar[k] = sc.nextInt();
 			HeapSort obj = new HeapSort();
-			obj.buildHeap(ar);
+			obj.heapSortHelper(ar);
 			for (int k = 0; k < sizeOfArray; k++)
 				System.out.print(ar[k] + " ");
 		}
@@ -25,45 +31,52 @@ public class HeapSort {
 
 	}
 
-	public void buildHeap(int[] ar) {
-		int len = ar.length;
-		int loop = (ar.length / 2) - 1;
-		for (int i = loop; i >= 0; i--) {
-			heapify(ar, len, i);
-		}
+	public void heapSortHelper(int[] ar) {
+		buildMaxHeap(ar);
+		int lastIndex = ar.length - 1;
 
-		// Swap the first element of the list with the final element. Decrease the
-		// considered range of the list by one.
-		for (int i = len - 1; i >= 0; i--) {
-
+		while (lastIndex > 0) {
 			int temp = ar[0];
-			ar[0] = ar[i];
-			ar[i] = temp;
+			ar[0] = ar[lastIndex];
+			ar[lastIndex] = temp;
 
-			heapify(ar, i, 0);
+			heapify(ar, 0, lastIndex);
+
+			lastIndex--;
 		}
 
 	}
 
-	public void heapify(int[] ar, int len, int i) {
-
-		int largest = i;
-		int leftChild = (2 * i) + 1;
-		int rightChild = (2 * i) + 2;
-		if (leftChild < len && ar[leftChild] > ar[largest])
-			largest = leftChild;
-
-		if (rightChild < len && ar[largest] < ar[rightChild])
-			largest = rightChild;
-
-		if (largest != i) {
-			int temp = ar[i];
-			ar[i] = ar[largest];
-			ar[largest] = temp;
-
-			heapify(ar, len, largest);
+	public void buildMaxHeap(int[] ar) {
+		int size = ar.length;
+		int loop = (size / 2) - 1;
+		for (int i = loop; i >= 0; i--) {
+			heapify(ar, i, size);
 		}
+	}
 
+	public void heapify(int[] ar, int start, int end) {
+		int largest, leftChild, rightChild;
+		while (start < end) {
+			largest = start;
+			leftChild = (2 * start) + 1;
+			rightChild = (2 * start) + 2;
+
+			if (leftChild < end && ar[largest] < ar[leftChild])
+				largest = leftChild;
+			if (rightChild < end && ar[largest] < ar[rightChild])
+				largest = rightChild;
+
+			if (largest == start)
+				return;
+			else {
+				int temp = ar[largest];
+				ar[largest] = ar[start];
+				ar[start] = temp;
+			}
+
+			start = largest;
+		}
 	}
 
 }
