@@ -57,11 +57,10 @@ public class DutchNationalFlagProblem {
         BufferedReader bufferedReader;
         LinkedList<String> inputToken;
         String line;
-        boolean partial = false;
         public Reader() {
             try {
                 bufferedReader = new BufferedReader(new InputStreamReader(System.in,"utf-8"));
-                inputToken = new LinkedList();
+                inputToken = new LinkedList<String>();
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
@@ -74,7 +73,7 @@ public class DutchNationalFlagProblem {
                 for(String s :line.split("\\s")) {
                     inputToken.add(s);
                 }
-                partial = false;
+        
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -85,24 +84,11 @@ public class DutchNationalFlagProblem {
             if(inputToken.size() == 0) {
                 readTokens();
             }
-            partial = true;
             return inputToken.remove();
         }
 
         public int nextInt() {
             return Integer.parseInt(nextToken());
-        }
-
-        public long nextLong() {
-            return Long.parseLong(nextToken());
-        }
-
-        public double nextDouble() {
-            return Double.parseDouble(nextToken());
-        }
-
-        public String nextString() {
-            return nextToken();
         }
 
 	}

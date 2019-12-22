@@ -55,12 +55,11 @@ public class AdvancingThroughArray {
 		BufferedReader bufferedReader;
 		LinkedList<String> inputToken;
 		String line;
-		boolean partial = false;
 
 		public Reader() {
 			try {
 				bufferedReader = new BufferedReader(new InputStreamReader(System.in, "utf-8"));
-				inputToken = new LinkedList();
+				inputToken = new LinkedList<String>();
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
@@ -73,7 +72,6 @@ public class AdvancingThroughArray {
 				for (String s : line.split("\\s")) {
 					inputToken.add(s);
 				}
-				partial = false;
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -84,7 +82,6 @@ public class AdvancingThroughArray {
 			if (inputToken.size() == 0) {
 				readTokens();
 			}
-			partial = true;
 			return inputToken.remove();
 		}
 
